@@ -7,7 +7,8 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <name>WeatherTimePlaceholder</name>
-    <description>PlaceholderAPI expansion for player placeholders</description>
+    <description>PlaceholderAPI expansion for weather and time placeholders.</description>
+    <url>https://github.com/Bloodlex/WeatherTimePlaceholder/</url>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -25,7 +26,6 @@
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
     </repositories>
-
 
     <dependencies>
         <dependency>
@@ -49,7 +49,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.4.2</version>
                 <configuration>
-                    <finalName>${project.name}</finalName>
+                    <finalName>${project.name}-${project.version}</finalName>
                     <archive>
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
