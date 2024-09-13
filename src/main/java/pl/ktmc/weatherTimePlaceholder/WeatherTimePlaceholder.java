@@ -10,9 +10,12 @@ import java.util.Objects;
 
 public final class WeatherTimePlaceholder extends PlaceholderExpansion implements Configurable {
 
-    private static final String STORM = "storm";
-    private static final String THUNDER = "thunder";
-    private static final String CLEAR = "clear";
+    private static final String WEATHER_STORM = "storm";
+    private static final String WEATHER_THUNDER = "thunder";
+    private static final String WEATHER_CLEAR = "clear";
+
+    private static final String WEATHER_PLACEHOLDER = "weather";
+    private static final String TIME_PLACEHOLDER = "time";
 
     @Override
     public String getAuthor() {
@@ -33,11 +36,11 @@ public final class WeatherTimePlaceholder extends PlaceholderExpansion implement
     public String onRequest(OfflinePlayer player, String identifier) {
         World world = Objects.requireNonNull(player.getPlayer()).getWorld();
 
-        if (identifier.equals("weather")) {
+        if (identifier.equals(WEATHER_PLACEHOLDER)) {
             return getWeatherIcon(world);
         }
 
-        if (identifier.equals("time")) {
+        if (identifier.equals(TIME_PLACEHOLDER)) {
             return getTimeIcon(world);
         }
 
@@ -45,7 +48,6 @@ public final class WeatherTimePlaceholder extends PlaceholderExpansion implement
     }
 
     private String getTimeIcon(World world) {
-        // Replace with actual method to get server time
         int time = getServerTime(world);
         if (time >= 0 && time < 6000) {
             return "☀";
@@ -56,7 +58,7 @@ public final class WeatherTimePlaceholder extends PlaceholderExpansion implement
         } else if (time >= 18000 && time < 24000) {
             return "🌕";
         } else {
-            return ":question:";
+            return "❓";
         }
     }
 
@@ -64,24 +66,21 @@ public final class WeatherTimePlaceholder extends PlaceholderExpansion implement
         // Replace with actual method to get server weather
         String weather = getServerWeather(world);
         switch (weather) {
-            case CLEAR:
+            case WEATHER_CLEAR:
                 return "☀";
-            case STORM:
+            case WEATHER_STORM:
                 return "🌧️";
-            case THUNDER:
+            case WEATHER_THUNDER:
                 return "⛈";
             default:
-                return ":question:";
+                return "❓";
         }
     }
 
     private String getServerWeather(World world) {
-        if (world.hasStorm() && !world.isThundering())
-            return STORM;
-        else if (world.hasStorm() && world.isThundering())
-            return THUNDER;
-        else
-            return CLEAR;
+        if (world.hasStorm() && !world.isThundering()) return WEATHER_STORM;
+        else if (world.hasStorm() && world.isThundering()) return WEATHER_THUNDER;
+        else return WEATHER_CLEAR;
     }
 
     private int getServerTime(World world) {
