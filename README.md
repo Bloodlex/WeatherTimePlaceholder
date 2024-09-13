@@ -1,0 +1,2 @@
+%WeatherTimePlaceholder_weather%
+%WeatherTimePlaceholder_time%
