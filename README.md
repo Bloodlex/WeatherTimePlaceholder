@@ -1,2 +1,3 @@
-%WeatherTimePlaceholder_weather%
-%WeatherTimePlaceholder_time%
+== Description ==
+* %WeatherTimePlaceholder_weather%
+* %WeatherTimePlaceholder_time%
