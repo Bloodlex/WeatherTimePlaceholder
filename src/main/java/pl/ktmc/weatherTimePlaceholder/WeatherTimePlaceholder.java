@@ -34,40 +34,40 @@ public final class WeatherTimePlaceholder extends PlaceholderExpansion implement
         World world = Objects.requireNonNull(player.getPlayer()).getWorld();
 
         if (identifier.equals("weather")) {
-            return checkWeather(world);
+            return getWeatherIcon(world);
         }
 
         if (identifier.equals("time")) {
-            return checkTime(world);
+            return getTimeIcon(world);
         }
 
         return null;
     }
 
-    private String checkTime(World world) {
+    private String getTimeIcon(World world) {
         // Replace with actual method to get server time
         int time = getServerTime(world);
         if (time >= 0 && time < 6000) {
-            return ":sunrise:";
+            return "☀";
         } else if (time >= 6000 && time < 12000) {
             return "☀";
         } else if (time >= 12000 && time < 18000) {
-            return ":city_sunset:";
+            return "🌕";
         } else if (time >= 18000 && time < 24000) {
-            return ":crescent_moon:";
+            return "🌕";
         } else {
             return ":question:";
         }
     }
 
-    private String checkWeather(World world) {
+    private String getWeatherIcon(World world) {
         // Replace with actual method to get server weather
         String weather = getServerWeather(world);
         switch (weather) {
             case CLEAR:
                 return "☀";
             case STORM:
-                return ":cloud_rain:";
+                return "🌧️";
             case THUNDER:
                 return "⛈";
             default:
@@ -75,7 +75,6 @@ public final class WeatherTimePlaceholder extends PlaceholderExpansion implement
         }
     }
 
-    // Example methods for retrieving server weather and time
     private String getServerWeather(World world) {
         if (world.hasStorm() && !world.isThundering())
             return STORM;
