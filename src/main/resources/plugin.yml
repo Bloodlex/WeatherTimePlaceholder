@@ -1,0 +1,5 @@
+name: WeatherTimePlaceholder
+version: '1.0.0-SNAPSHOT'
+main: pl.ktmc.weatherTimePlaceholder.WeatherTimePlaceholder
+api-version: '1.21'
+softdepend: [ PlaceholderAPI ]
